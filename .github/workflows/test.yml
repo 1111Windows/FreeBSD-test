@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Start VM
       id: vm
-      uses: vmactions/freebsd-vm@latest
+      uses: vmactions/freebsd-vm@v1.3.4
       with:
         sync: nfs
     - name: Custom shell step 1
