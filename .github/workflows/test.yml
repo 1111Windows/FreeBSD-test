@@ -30,9 +30,9 @@ jobs:
         mkdir upload
         tar-czvf ./upload/free-.tar.gz out/
 
-      - name: Upload tar archives
-        uses: actions/upload-artifact@v4
-        with:
-          name: "${{ matrix.vm_os }}-amd64-${{ matrix.build_type }}-tgz"
+    - name: Upload tar archives
+      uses: actions/upload-artifact@v4
+      with:
+          name: "-amd64-e-tgz"
           path: /upload/*.tar.gz
           if-no-files-found: ignore
