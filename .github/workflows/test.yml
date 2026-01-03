@@ -13,7 +13,7 @@ jobs:
       id: vm
       uses: vmactions/freebsd-vm@v1.3.4
       with:
-        sync: nfs
+        sync: zfs
     - name: Custom shell step 1
       shell: freebsd {0}
       run: |
@@ -21,8 +21,12 @@ jobs:
         pwd
         echo "this is step 1, running inside the VM"
     - name: Custom shell step 2
-      shell: freebsd {0}
+
       run: |
         cd $GITHUB_WORKSPACE;
+        sudo apt install tar -y
+        mkdir out
         pwd
-        echo "this is step 2, running inside the VM"
+        ls
+        touch ./out/test/
+        tar -czvf out
