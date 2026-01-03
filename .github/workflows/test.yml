@@ -28,11 +28,15 @@ jobs:
         ls
         touch ./out/test
         mkdir upload
-        tar -czvf ./upload/free-.tar.gz out/
+        tar -czvf free.tar.gz out/
+        mkdir upload
+        pwd
+        ls
+        mv free.tar.gz upload
 
     - name: Upload tar archives
       uses: actions/upload-artifact@v4
       with:
           name: "-amd64-e-tgz"
-          path: /upload/*.tar.gz
+          path: ./upload/*.tar.gz
           if-no-files-found: ignore
