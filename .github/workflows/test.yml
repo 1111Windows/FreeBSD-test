@@ -28,7 +28,7 @@ jobs:
         ls
         touch ./out/test
         mkdir upload
-        tar-czvf ./upload/free-.tar.gz out/
+        tar -czvf ./upload/free-.tar.gz out/
 
     - name: Upload tar archives
       uses: actions/upload-artifact@v4
