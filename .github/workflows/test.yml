@@ -20,9 +20,7 @@ jobs:
         cd $GITHUB_WORKSPACE;
         pwd
         echo step1
-
     - name: Custom shell step 2
-
       run: |
         cd $GITHUB_WORKSPACE;
         sudo apt install tar -y
