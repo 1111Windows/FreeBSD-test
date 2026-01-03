@@ -26,7 +26,7 @@ jobs:
         mkdir out
         pwd
         ls
-        touch ./out/test/e
+        touch ./out/test
         mkdir upload
         tar-czvf ./upload/free-.tar.gz out/
 
