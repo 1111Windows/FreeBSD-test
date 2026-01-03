@@ -19,7 +19,8 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE;
         pwd
-        echo "this is step 1, running inside the VM"
+        echo step1
+
     - name: Custom shell step 2
 
       run: |
