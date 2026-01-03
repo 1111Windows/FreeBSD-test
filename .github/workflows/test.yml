@@ -29,8 +29,9 @@ jobs:
         touch ./out/test
         mkdir upload
         tar -czvf free.tar.gz out/
-        mkdir upload
+        echo pwd
         pwd
+        echo ls
         ls
         mv free.tar.gz upload
 
