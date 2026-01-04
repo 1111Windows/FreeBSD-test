@@ -35,6 +35,28 @@ jobs:
         ls
         mv free.tar.gz upload
 
+    - name: Build SuperTux
+      shell: freebsd {0}
+      run: |
+        pwd
+        pkg install -y git cmake googletest sdl2 sdl2_image openal-soft glew curl libogg libvorbis freetype2 libraqm glm physfs libfmt fribidi harfbuzz libraqm
+        cd $GITHUB_WORKSPACE;
+        pwd
+        git clone --recursive https://github.com/1111Windows/supertux
+        mkdir build && cd build
+        cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DWARNINGS=ON -DWERROR=OFF -DINSTALL_SUBDIR_SHARE=share/supertux2 -DCMAKE_INSTALL_MESSAGE=NEVER -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_SUBDIR_BIN=bin -DENABLE_DISCORD=ON
+        ls
+        make -j4 VERBOSE=1
+        mkdir out
+        make install DESTDIR="./out" VERBOSE=1
+        cd out/usr
+        echo -e '#!/bin/sh\n' './bin/supertux2' >> run.sh
+        chmod +x run.sh
+        tar -czvf supertux.tar.gz ./
+        cd ../../
+        mkdir upload
+        mv out/usr/supertux.tar.gz upload/
+
     - name: Upload tar archives
       uses: actions/upload-artifact@v4
       with:
