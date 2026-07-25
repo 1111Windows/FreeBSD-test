@@ -22,12 +22,11 @@ jobs:
     - name: Custom shell step 2
       run: |
         cd $GITHUB_WORKSPACE;
-        sudo apt install tar gzip sdl3 sdl3_image sdl3_ttf -y
+        sudo apt install tar gzip  -y
         mkdir out
         pwd
         ls
-        echo "# ls /usr/local/lib"
-        ls /usr/local/lib
+        
         touch ./out/test
         mkdir upload
         tar -czvf free.tar.gz out/
@@ -41,7 +40,9 @@ jobs:
       shell: freebsd {0}
       run: |
         pwd
-        pkg install -y git cmake googletest sdl2 sdl2_image openal-soft glew curl libogg libvorbis freetype2 libraqm glm physfs libfmt fribidi harfbuzz libraqm
+        pkg install -y git cmake googletest sdl2 sdl2_image sdl3 sdl3_image sdl3_ttf openal-soft glew curl libogg libvorbis freetype2 libraqm glm physfs libfmt fribidi harfbuzz libraqm
+        echo "# ls /usr/local/lib"
+        ls /usr/local/lib
         cd $GITHUB_WORKSPACE;
         pwd
         git clone --recursive https://github.com/1111Windows/supertux
