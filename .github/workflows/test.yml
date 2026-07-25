@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to run test in FreeBSD
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7.0.1
     - name: Start VM
       id: vm
-      uses: vmactions/freebsd-vm@v1.3.4
+      uses: vmactions/freebsd-vm@v1.5.2
       with:
-        sync: zfs
+        sync: nfs
     - name: Custom shell step 1
       shell: freebsd {0}
       run: |
@@ -22,10 +22,12 @@ jobs:
     - name: Custom shell step 2
       run: |
         cd $GITHUB_WORKSPACE;
-        sudo apt install tar gzip -y
+        sudo apt install tar gzip sdl3 sdl3_image sdl3_ttf -y
         mkdir out
         pwd
         ls
+        echo "# ls /usr/local/lib"
+        ls /usr/local/lib
         touch ./out/test
         mkdir upload
         tar -czvf free.tar.gz out/
